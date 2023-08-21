@@ -123,7 +123,7 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
         private void btnApprove_Click(object sender, EventArgs e)
         {
             Book booking = bookRepo.GetAll().ToList().Find(x => x.BookId == int.Parse(txtID.Text));
-            if (booking.Status == 0) { booking.Status = 1; }
+            if (booking.Status != 1) { booking.Status = 1; }
             bookRepo.Update(booking);
             MessageBox.Show("This booking has been approved!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -131,7 +131,7 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
         private void btnReject_Click(object sender, EventArgs e)
         {
             Book booking = bookRepo.GetAll().ToList().Find(x => x.BookId == int.Parse(txtID.Text));
-            if (booking.Status == 0) { booking.Status = 2; }
+            if (booking.Status != 2) { booking.Status = 2; }
             bookRepo.Update(booking);
             MessageBox.Show("This booking has been rejected!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

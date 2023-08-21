@@ -14,7 +14,7 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
 {
     public partial class frmParkingSlot : Form
     {
-        BaixeRepository baixeRepository = new BaixeRepository();
+        IBaixeRepository baixeRepository = new BaixeRepository();
         SlotxeRepository slotxeRepository = new SlotxeRepository();
         public frmParkingSlot()
         {
@@ -23,10 +23,10 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
 
         private void frmParkingSlot_Load(object sender, EventArgs e)
         {
-            pnParkingSlot.Visible = false;
-            var list = baixeRepository.GetBaiXe();
+            pnParkingSlot.Visible = true;
+            var parkingList = baixeRepository.GetBaiXe();
             List<string> parkingNameList = new List<string>();
-            foreach (Baixe baixe in list)
+            foreach (Baixe baixe in parkingList)
             {
                 parkingNameList.Add(baixe.BaixeName);
             }
@@ -35,8 +35,11 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
 
         private void cbxParking_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.pnParkingSlot.Controls.Clear();
             var parkingList = baixeRepository.GetBaiXe();
+            var slots = slotxeRepository.GetAll();
             Baixe parking = new Baixe();
+            //Get parking object from cbx
             foreach (Baixe baixe in parkingList)
             {
                 if (baixe.BaixeName.Equals(cbxParking.Text))
@@ -44,9 +47,24 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
                     parking = baixe;
                 }
             }
+            //Generate slots graphic in this parking to panel
+            List<Slotxe> list = slots.Where(x => x.BaixeId == parking.BaixeId).ToList();
             for (int i = 1; i <= parking.TotalSlot; i++)
             {
-                
+                Button bt = new Button();
+                bt.Location = new Point(i * 65 + 3, 3);
+                bt.Text = "Slot " + i.ToString();
+                bt.Name = i.ToString();
+                bt.Size = new Size(59, 110);
+                bt.TabIndex = i;
+                bt.UseVisualStyleBackColor = true;
+                //Check slot status to change back color
+                Slotxe slot = (Slotxe)list.ElementAt(i - 1);
+                if (slot.Status == 1)
+                {
+                    bt.BackColor = Color.LightGray;
+                }
+                this.pnParkingSlot.Controls.Add(bt);
             }
         }
     }
