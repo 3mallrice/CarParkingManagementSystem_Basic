@@ -15,10 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
+
     <ProjectReference Include="..\DataAccessObject\DataAccessObject.csproj" />
-=======
->>>>>>> NewUp/main
+
     <ProjectReference Include="..\DataObject\DataObject.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
