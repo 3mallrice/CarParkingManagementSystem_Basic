@@ -31,11 +31,6 @@
             label1 = new Label();
             cbxParking = new ComboBox();
             pnParkingSlot = new FlowLayoutPanel();
-            pnTimer = new Panel();
-            pnButton = new Panel();
-            btnCheckOut = new Button();
-            btnCheckIn = new Button();
-            pnButton.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -64,54 +59,17 @@
             pnParkingSlot.Size = new Size(782, 380);
             pnParkingSlot.TabIndex = 2;
             // 
-            // pnTimer
-            // 
-            pnTimer.Location = new Point(522, 6);
-            pnTimer.Name = "pnTimer";
-            pnTimer.Size = new Size(267, 50);
-            pnTimer.TabIndex = 6;
-            // 
-            // pnButton
-            // 
-            pnButton.Controls.Add(btnCheckOut);
-            pnButton.Controls.Add(btnCheckIn);
-            pnButton.Location = new Point(187, 6);
-            pnButton.Name = "pnButton";
-            pnButton.Size = new Size(267, 50);
-            pnButton.TabIndex = 5;
-            // 
-            // btnCheckOut
-            // 
-            btnCheckOut.Location = new Point(143, 0);
-            btnCheckOut.Name = "btnCheckOut";
-            btnCheckOut.Size = new Size(124, 50);
-            btnCheckOut.TabIndex = 1;
-            btnCheckOut.Text = "CHECK OUT";
-            btnCheckOut.UseVisualStyleBackColor = true;
-            // 
-            // btnCheckIn
-            // 
-            btnCheckIn.Location = new Point(0, 0);
-            btnCheckIn.Name = "btnCheckIn";
-            btnCheckIn.Size = new Size(124, 50);
-            btnCheckIn.TabIndex = 0;
-            btnCheckIn.Text = "CHECK IN";
-            btnCheckIn.UseVisualStyleBackColor = true;
-            // 
             // frmParkingSlot
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(pnTimer);
-            Controls.Add(pnButton);
             Controls.Add(pnParkingSlot);
             Controls.Add(cbxParking);
             Controls.Add(label1);
             Name = "frmParkingSlot";
             Text = "frmParkingSlot";
             Load += frmParkingSlot_Load;
-            pnButton.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -121,9 +79,5 @@
         private Label label1;
         private ComboBox cbxParking;
         private FlowLayoutPanel pnParkingSlot;
-        private Panel pnTimer;
-        private Panel pnButton;
-        private Button btnCheckOut;
-        private Button btnCheckIn;
     }
 }
