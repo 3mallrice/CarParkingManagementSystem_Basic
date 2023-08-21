@@ -223,7 +223,7 @@
             dgvUserManagement.RowTemplate.Height = 29;
             dgvUserManagement.Size = new Size(647, 251);
             dgvUserManagement.TabIndex = 21;
-            dgvUserManagement.CellContentClick += dgvUserManagement_CellClick;
+            dgvUserManagement.CellDoubleClick += dgvUserManagement_CellDoubleClick;
             // 
             // btnCreate
             // 

@@ -55,7 +55,7 @@ namespace BookingCarParkingManagement
                 MessageBox.Show(ex.Message, "Load user list");
             }
         }
-        private void dgvUserManagement_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvUserManagement_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var UserId = dgvUserManagement.Rows[e.RowIndex].Cells[0].Value;
             if (UserId != null)
@@ -67,7 +67,7 @@ namespace BookingCarParkingManagement
                 {
                     txtUserID.Text = user.UserId.ToString();
                     txtName.Text = user.Name;
-                    txtEmail.Text = user.Email;
+                    txtEmail.Text = user.Email.ToLower();
                     txtPassword.Text = user.Password;
                     txtPhone.Text = user.Phone;
                     txtRole.Text = user.Role.ToString();
