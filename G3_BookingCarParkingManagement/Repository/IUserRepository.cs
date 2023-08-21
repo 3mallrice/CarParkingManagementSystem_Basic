@@ -1,30 +1,21 @@
-﻿using DataAccessObject;
-using DataObject.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataObject.Models;
 
 namespace Repository
 {
     public interface IUserRepository
     {
-        
+        public User CheckLogin(string email, string password);
 
-        public Users CheckLogin(string email, string password);
+        public List<User> GetMembers();
 
-        public List<Users> GetMembers();
-
-        public Users GetMemberByMemberID(string memberID);
+        public User GetMemberByMemberID(string memberID);
         public bool CheckUpdateEmailDuplicated(int memberID, string email);
 
         public bool CheckMemberIdDuplicated(int memberID);
 
         public bool CheckEmailDuplicated(int memberID, string email);
 
-         void UpdateMember(Users m);
+         void UpdateMember(User m);
 
     }
 }

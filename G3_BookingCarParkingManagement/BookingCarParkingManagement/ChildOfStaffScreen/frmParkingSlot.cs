@@ -24,7 +24,7 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
         private void frmParkingSlot_Load(object sender, EventArgs e)
         {
             pnParkingSlot.Visible = false;
-            var list = baixeRepository.GetAll();
+            var list = baixeRepository.GetBaiXe();
             List<string> parkingNameList = new List<string>();
             foreach (Baixe baixe in list)
             {
@@ -35,7 +35,7 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
 
         private void cbxParking_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var parkingList = baixeRepository.GetAll();
+            var parkingList = baixeRepository.GetBaiXe();
             Baixe parking = new Baixe();
             foreach (Baixe baixe in parkingList)
             {

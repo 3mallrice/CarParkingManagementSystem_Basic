@@ -16,6 +16,6 @@ namespace DataObject.Models
 
         public virtual Car? Car { get; set; }
         public virtual Slotxe? Slotxe { get; set; }
-        public virtual Users? User { get; set; }
+        public virtual User? User { get; set; }
     }
 }

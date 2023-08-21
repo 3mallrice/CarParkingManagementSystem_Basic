@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace DataObject.Models
 {
-    public partial class Users
+    public partial class User
     {
-        public Users()
+        public User()
         {
             Books = new HashSet<Book>();
             Cars = new HashSet<Car>();

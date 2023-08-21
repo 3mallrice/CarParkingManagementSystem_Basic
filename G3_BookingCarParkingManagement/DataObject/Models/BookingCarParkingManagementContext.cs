@@ -22,18 +22,14 @@ namespace DataObject.Models
         public virtual DbSet<Book> Books { get; set; } = null!;
         public virtual DbSet<Car> Cars { get; set; } = null!;
         public virtual DbSet<Slotxe> Slotxes { get; set; } = null!;
-        public virtual DbSet<Users> Users { get; set; } = null;
+        public virtual DbSet<User> Users { get; set; } = null;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-<<<<<<< HEAD
-                optionsBuilder.UseSqlServer("server =(local); database = BookingCarParkingManagement;uid=sa;pwd=123456;TrustServerCertificate = True");
-=======
                 optionsBuilder.UseSqlServer(GetConnectionString());
->>>>>>> NewUp/main
             }
             
         }
@@ -123,7 +119,7 @@ namespace DataObject.Models
                     .HasConstraintName("FK__Slotxe__BaixeID__4BAC3F29");
             });
 
-            modelBuilder.Entity<Users>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.UserId).ValueGeneratedNever();
 

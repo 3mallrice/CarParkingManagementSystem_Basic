@@ -6,10 +6,6 @@ namespace BookingCarParkingManagement
 {
     public partial class frmLogin : Form
     {
-<<<<<<< HEAD
-        IUserRepository users = new UserRepository();
-=======
->>>>>>> NewUp/main
         public UserRepository _user { get; set; }
         public frmLogin()
         {
@@ -54,7 +50,7 @@ namespace BookingCarParkingManagement
             /*var user = users.GetMembers().Where(p => p.Email.Equals(email)
                             && p.Password.Equals(password))
                     .FirstOrDefault();*/
-            var user = users.CheckLogin(email, password);
+            var user = _user.CheckLogin(email, password);
 
             if (user != null)
             {

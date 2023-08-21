@@ -25,7 +25,7 @@ namespace BookingCarParkingManagement
         IEnumerable<Baixe> DataSource;
         IEnumerable<Baixe> searchResult;
         IEnumerable<Baixe> filterResult;
-        public Users UserLogin { get; set; }
+        public User UserLogin { get; set; }
         public void LoadProductList()
         {
             try

@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-<<<<<<<< HEAD:G3_BookingCarParkingManagement/Repository/IBaixeRepository.cs
     public interface IBaixeRepository
-========
-    public class UserRepository : RepositoryBase<User>
->>>>>>>> NewUp/main:G3_BookingCarParkingManagement/Repository/UserRepository.cs
     {
         public List<Baixe> GetBaiXe();
 

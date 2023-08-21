@@ -66,7 +66,7 @@ namespace BookingCarParkingManagement
 
             else
             {
-                var NewUser = new Users();
+                var NewUser = new User();
                 NewUser.Email = email;
                 NewUser.Password = password;
                 NewUser.Role = 1;

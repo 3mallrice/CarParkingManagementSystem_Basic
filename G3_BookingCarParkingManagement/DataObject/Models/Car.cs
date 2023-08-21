@@ -15,7 +15,7 @@ namespace DataObject.Models
         public string? Bsx { get; set; }
         public int? Status { get; set; }
 
-        public virtual Users? User { get; set; }
+        public virtual User? User { get; set; }
         public virtual ICollection<Book> Books { get; set; }
     }
 }

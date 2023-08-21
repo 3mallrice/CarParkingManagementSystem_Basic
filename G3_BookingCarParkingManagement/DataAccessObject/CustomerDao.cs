@@ -28,9 +28,9 @@ namespace DataAccessObject
                 }
             }
         }
-        public Users GetMemberByMemberID(string memberID)
+        public User GetMemberByMemberID(string memberID)
         {
-            Users mem = new Users();
+            User mem = new User();
             try
             {
                 using (var dbContext = new BookingCarParkingManagementContext())
@@ -45,9 +45,9 @@ namespace DataAccessObject
             }
             return mem;
         }
-        public List<Users> GetMembers()
+        public List<User> GetMembers()
         {
-            var listMembers = new List<Users>();
+            var listMembers = new List<User>();
             try
             {
                 using (var db = new BookingCarParkingManagementContext())
@@ -62,10 +62,10 @@ namespace DataAccessObject
             }
             return listMembers;
         }
-        public Users CheckLogin(String email, String password)
+        public User CheckLogin(String email, String password)
         {
-            var listMembers = new List<Users>();
-            Users member;
+            var listMembers = new List<User>();
+            User member;
             try
             {
                 using (var dbContext = new BookingCarParkingManagementContext())
@@ -82,7 +82,7 @@ namespace DataAccessObject
         public Boolean CheckMemberIdDuplicated(int memberID)
         {
             Boolean check = false;
-            Users mem = new Users();
+            User mem = new User();
             try
             {
                 using (var dbContext = new BookingCarParkingManagementContext())
@@ -105,7 +105,7 @@ namespace DataAccessObject
         public Boolean CheckEmailDuplicated(string email)
         {
             Boolean check = false;
-            Users mem = new Users();
+            User mem = new User();
             try
             {
                 using (var dbContext = new BookingCarParkingManagementContext())
@@ -124,13 +124,13 @@ namespace DataAccessObject
             }
             return check;
         }
-        public void UpdateMember(Users m)
+        public void UpdateMember(User m)
         {
             try
             {
                 using (var context = new BookingCarParkingManagementContext())
                 {
-                    context.Entry<Users>(m).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.Entry<User>(m).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     context.SaveChanges();
                 }
             }
@@ -143,7 +143,7 @@ namespace DataAccessObject
         public Boolean CheckUpdateEmailDuplicated(int memberID, string email)
         {
             Boolean check = false;
-            Users mem = new Users();
+            User mem = new User();
 
             try
             {

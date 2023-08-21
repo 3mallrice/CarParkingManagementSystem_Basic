@@ -18,15 +18,15 @@ namespace BookingCarParkingManagement
 
         // public IUserRepository UserRepository { get; set; }
         public bool InsertOrUpdate { get; set; }
-        public Users user { get; set; }
+        public DataObject.Models.User user { get; set; }
         public frmUpdateCustomerScreen()
         {
             InitializeComponent();
         }
-        IUserRepository userRepository = new UserRepository();
+        UserRepository userRepository = new UserRepository();
 
-        Users currentMemberInfo = new Users();
-        public Users UserLogins { get; set; }
+        DataObject.Models.User currentMemberInfo = new DataObject.Models.User();
+        public DataObject.Models.User UserLogins { get; set; }
 
         public int a;
         public void LoadUserInfo()
@@ -71,7 +71,7 @@ namespace BookingCarParkingManagement
                 {
                     if (InsertOrUpdate == true)
                     {
-                        var m = new Users
+                        var m = new DataObject.Models.User
                         {
 
                             UserId = int.Parse(txtCusID.Text),
