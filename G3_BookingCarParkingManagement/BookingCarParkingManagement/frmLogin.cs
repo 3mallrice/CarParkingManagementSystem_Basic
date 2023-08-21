@@ -15,7 +15,7 @@ namespace BookingCarParkingManagement
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var email = txtEmail.Text;
+            var email = txtEmail.Text.ToLower();
             var password = txtPassword.Text;
 
             if (string.IsNullOrEmpty(email))
