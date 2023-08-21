@@ -1,8 +1,8 @@
 
-﻿using Repository;
+using Repository;
 using System.Data;
 using System.Text.RegularExpressions;
-﻿using DataObject.Models;
+using DataObject.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
@@ -44,7 +44,7 @@ namespace BookingCarParkingManagement
                     p.UserId,
                     p.Name,
                     p.Email,
-                    p.Password,
+                    Password = new string('*', p.Password.Length), // Đổi mật khẩu thành chuỗi '*'
                     p.Phone,
                     p.Role,
                     p.Status
@@ -111,7 +111,8 @@ namespace BookingCarParkingManagement
 
                 _user.Update(UserOld);
                 GetList();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Cannot delete", MessageBoxButtons.OK);
             }
@@ -127,7 +128,8 @@ namespace BookingCarParkingManagement
                 {
                     Close();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
@@ -249,7 +251,8 @@ namespace BookingCarParkingManagement
 
                 _user.Update(UserOld);
                 GetList();
-            } catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Cannot Update", MessageBoxButtons.OK);
             }
