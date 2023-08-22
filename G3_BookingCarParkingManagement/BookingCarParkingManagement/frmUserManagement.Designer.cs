@@ -96,7 +96,7 @@
             // 
             // btnClose
             // 
-            btnClose.Location = new Point(294, 456);
+            btnClose.Location = new Point(565, 456);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 37;
@@ -205,6 +205,7 @@
             // 
             txtUserID.Location = new Point(95, 286);
             txtUserID.Name = "txtUserID";
+            txtUserID.ReadOnly = true;
             txtUserID.Size = new Size(218, 27);
             txtUserID.TabIndex = 23;
             // 
@@ -241,9 +242,9 @@
             // 
             // btnParkingBookingManagement
             // 
-            btnParkingBookingManagement.Location = new Point(437, 456);
+            btnParkingBookingManagement.Location = new Point(294, 456);
             btnParkingBookingManagement.Name = "btnParkingBookingManagement";
-            btnParkingBookingManagement.Size = new Size(222, 29);
+            btnParkingBookingManagement.Size = new Size(218, 29);
             btnParkingBookingManagement.TabIndex = 44;
             btnParkingBookingManagement.Text = "Parking Booking Management";
             btnParkingBookingManagement.UseVisualStyleBackColor = true;

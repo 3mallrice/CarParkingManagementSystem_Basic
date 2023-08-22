@@ -2,27 +2,6 @@
 using Repository;
 using System.Data;
 using System.Text.RegularExpressions;
-using DataObject.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.Identity.Client;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic.ApplicationServices;
-using Repository;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using System.Runtime.InteropServices;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
-using System.Security.Cryptography;
-using System.Xml.Linq;
 
 namespace BookingCarParkingManagement
 {
@@ -66,10 +45,10 @@ namespace BookingCarParkingManagement
         {
             if (e.RowIndex >= 0 && e.RowIndex < dgvUserManagement.Rows.Count)
             {
-                var UserId = dgvUserManagement.Rows[e.RowIndex].Cells[0].Value;
-                if (UserId != null)
+                var UserIdCell = dgvUserManagement.Rows[e.RowIndex].Cells[0];
+                if (UserIdCell.Value != null && int.TryParse(UserIdCell.Value.ToString(), out int userId))
                 {
-                    var user = _user.GetAll().FirstOrDefault(p => p.UserId.Equals(txtUserID.Text));
+                    var user = _user.GetAll().FirstOrDefault(p => p.UserId == userId);
                     if (user != null)
                     {
                         txtUserID.Text = user.UserId.ToString();
@@ -201,6 +180,7 @@ namespace BookingCarParkingManagement
 
                 _user.Update(UserOld);
                 GetList();
+                Clear();
             }
             catch (Exception ex)
             {
