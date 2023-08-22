@@ -42,11 +42,11 @@
             dtpBook = new DateTimePicker();
             txtStatus = new TextBox();
             txtSlot = new TextBox();
+            cbxCar = new ComboBox();
             lbTitle = new Label();
             pnButton = new Panel();
             btnCancel = new Button();
             btnCheck = new Button();
-            cbxCar = new ComboBox();
             tableLayoutPanel1.SuspendLayout();
             pnButton.SuspendLayout();
             SuspendLayout();
@@ -195,6 +195,14 @@
             txtSlot.Size = new Size(207, 23);
             txtSlot.TabIndex = 14;
             // 
+            // cbxCar
+            // 
+            cbxCar.FormattingEnabled = true;
+            cbxCar.Location = new Point(146, 68);
+            cbxCar.Name = "cbxCar";
+            cbxCar.Size = new Size(207, 23);
+            cbxCar.TabIndex = 15;
+            // 
             // lbTitle
             // 
             lbTitle.AutoSize = true;
@@ -236,14 +244,6 @@
             btnCheck.UseVisualStyleBackColor = true;
             btnCheck.Click += btnCheck_Click;
             // 
-            // cbxCar
-            // 
-            cbxCar.FormattingEnabled = true;
-            cbxCar.Location = new Point(146, 68);
-            cbxCar.Name = "cbxCar";
-            cbxCar.Size = new Size(207, 23);
-            cbxCar.TabIndex = 15;
-            // 
             // frmSlotDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -255,6 +255,7 @@
             Name = "frmSlotDetail";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmSlotDetail";
+            FormClosed += frmSlotDetail_FormClosed;
             Load += frmSlotDetail_Load;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
