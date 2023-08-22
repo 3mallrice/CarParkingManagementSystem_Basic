@@ -19,15 +19,19 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Runtime.InteropServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using System.Security.Cryptography;
+using System.Xml.Linq;
 
 namespace BookingCarParkingManagement
 {
     public partial class frmUserManagement : Form
     {
-        public UserRepository _user { get; set; }
+        public UserRepository _user = new UserRepository();
         public frmUserManagement()
         {
-            _user = new UserRepository();
+            //_user = new UserRepository();
             InitializeComponent();
         }
         private void frmUserManagement_Load(object sender, EventArgs e)
@@ -65,8 +69,7 @@ namespace BookingCarParkingManagement
                 var UserId = dgvUserManagement.Rows[e.RowIndex].Cells[0].Value;
                 if (UserId != null)
                 {
-                    var userIdValue = UserId.ToString(); // Convert UserId to string
-                    var user = _user.GetAll().Where(p => p.UserId.Equals(userIdValue)).FirstOrDefault();
+                    var user = _user.GetAll().FirstOrDefault(p => p.UserId.Equals(txtUserID.Text));
                     if (user != null)
                     {
                         txtUserID.Text = user.UserId.ToString();
@@ -80,7 +83,6 @@ namespace BookingCarParkingManagement
                 }
             }
         }
-
 
         public void Clear()
         {
@@ -103,26 +105,33 @@ namespace BookingCarParkingManagement
         {
             try
             {
-                // Lấy thông tin người dùng dựa trên UserID
-                var UserOld = _user.GetAll().FirstOrDefault(p => p.UserId.Equals(int.Parse(txtUserID.Text)));
-
-                if (UserOld == null)
+                if (int.TryParse(txtUserID.Text, out int userId))
                 {
-                    MessageBox.Show("User not found with the provided ID.", "Error", MessageBoxButtons.OK);
-                    return;
+                    var userToDelete = _user.GetAll().FirstOrDefault(p => p.UserId == userId);
+
+                    if (userToDelete == null)
+                    {
+                        MessageBox.Show("User not found with the provided ID.", "Error", MessageBoxButtons.OK);
+                        return;
+                    }
+
+                    // Đánh dấu người dùng đã bị xóa bằng cách cập nhật trạng thái
+                    userToDelete.Status = 0;
+
+                    _user.Update(userToDelete);
+                    GetList(); // Đảm bảo cập nhật danh sách sau khi xóa
                 }
-
-                // Đánh dấu người dùng đã bị xóa bằng cách cập nhật trạng thái
-                UserOld.Status = 0;
-
-                _user.Update(UserOld);
-                GetList();
+                else
+                {
+                    MessageBox.Show("Invalid UserID format.", "Error", MessageBoxButtons.OK);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Cannot delete", MessageBoxButtons.OK);
             }
         }
+
 
         private void btnClose_Click_1(object sender, EventArgs e)
         {
@@ -140,77 +149,12 @@ namespace BookingCarParkingManagement
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
         }
-
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var UserOld = _user.GetAll().Where(p => p.UserId.Equals(txtUserID.Text)).FirstOrDefault();
-                if (UserOld != null)
-                {
-                    MessageBox.Show("ID existed, please try again", "Error", MessageBoxButtons.OK);
-                    return;
-                }
-                if (txtUserID.Text == "" || txtEmail.Text == "" || txtName.Text == "" || txtPassword.Text == "" || txtRole.Text == "" || txtStatus.Text == "" || txtPhone.Text == "")
-                {
-                    MessageBox.Show("Fields can not null", "Error", MessageBoxButtons.OK);
-                    return;
-                }
-                var email = txtEmail.Text;
-                var password = txtPassword.Text;
-                var phone = txtPhone.Text;
-
-                var emailRegex = new Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-                var passwordRegex = new Regex(@"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
-                var phoneRegex = new Regex(@"^(03\d|05\d|07\d|08\d|09\d)\d{7}$");
-
-                var emailIsValid = emailRegex.IsMatch(email);
-                var passwordIsValid = passwordRegex.IsMatch(password);
-                var phoneIsValid = phoneRegex.IsMatch(phone);
-
-                if (!emailIsValid)
-                {
-                    MessageBox.Show("Please enter a valid email", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (!passwordIsValid)
-                {
-                    MessageBox.Show("Password must be at least 8 characters long and include a digit, an uppercase letter, and a special character", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (!phoneIsValid)
-                {
-                    MessageBox.Show("Please enter a valid phone", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                var UserNew = new DataObject.Models.User();
-                UserNew.UserId.Equals(int.Parse(txtUserID.Text));
-                UserNew.Email = email;
-                UserNew.Name = txtName.Text;
-                UserNew.Password = password;
-                UserNew.Phone = phone;
-                UserNew.Role = int.Parse(txtRole.Text);
-                UserNew.Status = int.Parse(txtStatus.Text);
-
-                _user.Create(UserNew);
-                GetList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Create fail", MessageBoxButtons.OK);
-            }
-        }
-
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
             {
                 // Lấy thông tin người dùng dựa trên UserID
-                var UserOld = _user.GetAll().FirstOrDefault(p => p.UserId.Equals(int.Parse(txtUserID.Text)));
+                var UserOld = _user.GetAll().FirstOrDefault(p => p.UserId == int.Parse(txtUserID.Text));
 
                 if (UserOld == null)
                 {
@@ -251,7 +195,7 @@ namespace BookingCarParkingManagement
                 UserOld.Email = email;
                 UserOld.Name = txtName.Text;
                 UserOld.Password = password;
-                UserOld.Status = 1;
+                UserOld.Status = int.Parse(txtStatus.Text);
                 UserOld.Phone = phone;
                 UserOld.Role.Equals(int.Parse(txtRole.Text));
 
@@ -310,6 +254,42 @@ namespace BookingCarParkingManagement
                 this.Hide();
                 frmLogin frmLogin = new frmLogin();
                 frmLogin.ShowDialog();
+            }
+        }
+
+        private void dgvUserManagement_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnUnBan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (int.TryParse(txtUserID.Text, out int userId))
+                {
+                    var userToDelete = _user.GetAll().FirstOrDefault(p => p.UserId == userId);
+
+                    if (userToDelete == null)
+                    {
+                        MessageBox.Show("User not found with the provided ID.", "Error", MessageBoxButtons.OK);
+                        return;
+                    }
+
+                    // Đánh dấu người dùng đã bị xóa bằng cách cập nhật trạng thái
+                    userToDelete.Status = 1;
+
+                    _user.Update(userToDelete);
+                    GetList(); // Đảm bảo cập nhật danh sách sau khi xóa
+                }
+                else
+                {
+                    MessageBox.Show("Invalid UserID format.", "Error", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Cannot delete", MessageBoxButtons.OK);
             }
         }
     }

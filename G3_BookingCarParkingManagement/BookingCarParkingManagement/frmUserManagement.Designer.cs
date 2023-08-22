@@ -48,11 +48,11 @@
             txtUserID = new TextBox();
             label1 = new Label();
             dgvUserManagement = new DataGridView();
-            btnCreate = new Button();
             btnUpdate = new Button();
             btnParkingBookingManagement = new Button();
             btnStaffScreen = new Button();
             btnLogout = new Button();
+            btnUnBan = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvUserManagement).BeginInit();
             SuspendLayout();
             // 
@@ -90,7 +90,7 @@
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 38;
-            btnDelete.Text = "Delete";
+            btnDelete.Text = "Ban";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click_1;
             // 
@@ -205,7 +205,6 @@
             // 
             txtUserID.Location = new Point(95, 286);
             txtUserID.Name = "txtUserID";
-            txtUserID.ReadOnly = true;
             txtUserID.Size = new Size(218, 27);
             txtUserID.TabIndex = 23;
             // 
@@ -227,21 +226,12 @@
             dgvUserManagement.RowTemplate.Height = 29;
             dgvUserManagement.Size = new Size(647, 251);
             dgvUserManagement.TabIndex = 0;
+            dgvUserManagement.CellContentClick += dgvUserManagement_CellContentClick;
             dgvUserManagement.CellDoubleClick += dgvUserManagement_CellDoubleClick;
-            // 
-            // btnCreate
-            // 
-            btnCreate.Location = new Point(12, 501);
-            btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(94, 29);
-            btnCreate.TabIndex = 42;
-            btnCreate.Text = "Create";
-            btnCreate.UseVisualStyleBackColor = true;
-            btnCreate.Click += btnCreate_Click;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(150, 501);
+            btnUpdate.Location = new Point(12, 501);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(94, 29);
             btnUpdate.TabIndex = 43;
@@ -279,16 +269,26 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
+            // btnUnBan
+            // 
+            btnUnBan.Location = new Point(150, 501);
+            btnUnBan.Name = "btnUnBan";
+            btnUnBan.Size = new Size(94, 29);
+            btnUnBan.TabIndex = 47;
+            btnUnBan.Text = "UnBan";
+            btnUnBan.UseVisualStyleBackColor = true;
+            btnUnBan.Click += btnUnBan_Click;
+            // 
             // frmUserManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(671, 546);
+            Controls.Add(btnUnBan);
             Controls.Add(btnLogout);
             Controls.Add(btnStaffScreen);
             Controls.Add(btnParkingBookingManagement);
             Controls.Add(btnUpdate);
-            Controls.Add(btnCreate);
             Controls.Add(btnLoad);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
@@ -340,10 +340,10 @@
         private TextBox txtUserID;
         private Label label1;
         private DataGridView dgvUserManagement;
-        private Button btnCreate;
         private Button btnUpdate;
         private Button btnParkingBookingManagement;
         private Button btnStaffScreen;
         private Button btnLogout;
+        private Button btnUnBan;
     }
 }
