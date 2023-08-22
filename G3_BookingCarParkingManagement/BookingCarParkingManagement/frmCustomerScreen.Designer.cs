@@ -41,6 +41,7 @@
             label6 = new Label();
             cboSearchFilter = new ComboBox();
             txtSearchBox = new TextBox();
+            btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvListBaixe).BeginInit();
             SuspendLayout();
             // 
@@ -157,11 +158,22 @@
             txtSearchBox.TabIndex = 12;
             txtSearchBox.TextChanged += txtSearchBox_TextChanged_1;
             // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(542, 429);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(99, 29);
+            btnLogout.TabIndex = 13;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // frmCustomerScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(661, 450);
+            ClientSize = new Size(661, 470);
+            Controls.Add(btnLogout);
             Controls.Add(txtSearchBox);
             Controls.Add(cboSearchFilter);
             Controls.Add(label6);
@@ -176,6 +188,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "frmCustomerScreen";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmCustomerScreen";
             Load += frmCustomerScreen_Load;
             ((System.ComponentModel.ISupportInitialize)dgvListBaixe).EndInit();
@@ -198,5 +211,6 @@
         private Label label6;
         private ComboBox cboSearchFilter;
         private TextBox txtSearchBox;
+        private Button btnLogout;
     }
 }

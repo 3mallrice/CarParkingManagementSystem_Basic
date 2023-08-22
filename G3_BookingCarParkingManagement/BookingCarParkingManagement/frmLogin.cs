@@ -12,7 +12,6 @@ namespace BookingCarParkingManagement
             _user = new UserRepository();
             InitializeComponent();
         }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             var email = txtEmail.Text.ToLower();
@@ -42,12 +41,12 @@ namespace BookingCarParkingManagement
                 return;
             }
 
-            /*if (!passwordIsValid)
+            if (!passwordIsValid)
             {
                 MessageBox.Show("Password must be at least 8 characters long and include a digit, an uppercase letter, and a special character", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }*/
-            /*var user = users.GetMembers().Where(p => p.Email.Equals(email)
+            }
+            /*var user = _user.GetMembers().Where(p => p.Email.Equals(email)
                             && p.Password.Equals(password))
                     .FirstOrDefault();*/
             var user = _user.CheckLogin(email, password);

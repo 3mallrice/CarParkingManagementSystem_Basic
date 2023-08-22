@@ -140,5 +140,16 @@ namespace BookingCarParkingManagement
             };
             frmUpdate.ShowDialog();
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            var cfm = MessageBox.Show("Are you sure to Sign Out?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (cfm == DialogResult.OK)
+            {
+                this.Hide();
+                frmLogin frmLogin = new frmLogin();
+                frmLogin.ShowDialog();
+            }
+        }
     }
 }

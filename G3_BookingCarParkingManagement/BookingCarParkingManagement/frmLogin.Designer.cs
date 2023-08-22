@@ -44,13 +44,10 @@
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Location = new Point(58, 101);
-            label1.Name = "label1";
-            label1.Size = new Size(49, 20);
-            label1.BackColor = Color.FromArgb(0, 0, 0, 0);
+            label1.BackColor = Color.DimGray;
             label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Red;
+            label1.ForeColor = Color.WhiteSmoke;
             label1.Location = new Point(58, 101);
             label1.Name = "label1";
             label1.Size = new Size(54, 20);
@@ -60,12 +57,9 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(58, 148);
-            label2.Name = "label2";
-            label2.Size = new Size(73, 20);
-            label2.BackColor = Color.FromArgb(0, 0, 0, 0);
+            label2.BackColor = Color.DimGray;
             label2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.Red;
+            label2.ForeColor = Color.WhiteSmoke;
             label2.Location = new Point(58, 148);
             label2.Name = "label2";
             label2.Size = new Size(86, 20);
@@ -90,9 +84,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(0, 0, 0, 0);
+            label3.BackColor = Color.DimGray;
             label3.FlatStyle = FlatStyle.Flat;
             label3.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ButtonFace;
             label3.Location = new Point(118, 37);
             label3.Name = "label3";
             label3.Size = new Size(233, 41);
@@ -123,10 +118,10 @@
             // 
             txtRegister.ActiveLinkColor = Color.LightYellow;
             txtRegister.AutoSize = true;
-            txtRegister.BackColor = Color.FromArgb(0, 0, 0, 0);
+            txtRegister.BackColor = Color.DimGray;
             txtRegister.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             txtRegister.ForeColor = SystemColors.ActiveCaptionText;
-            txtRegister.LinkColor = Color.Red;
+            txtRegister.LinkColor = Color.Lime;
             txtRegister.Location = new Point(272, 245);
             txtRegister.Name = "txtRegister";
             txtRegister.Size = new Size(70, 20);
@@ -138,7 +133,8 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.FromArgb(0, 0, 0, 0);
+            label4.BackColor = Color.DimGray;
+            label4.ForeColor = Color.White;
             label4.Location = new Point(102, 245);
             label4.Name = "label4";
             label4.Size = new Size(153, 20);
