@@ -41,6 +41,8 @@
             label6 = new Label();
             cboSearchFilter = new ComboBox();
             txtSearchBox = new TextBox();
+            btnCarRegistration = new Button();
+            btnParkingBooking = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvListBaixe).BeginInit();
             SuspendLayout();
             // 
@@ -157,11 +159,33 @@
             txtSearchBox.TabIndex = 12;
             txtSearchBox.TextChanged += txtSearchBox_TextChanged_1;
             // 
+            // btnCarRegistration
+            // 
+            btnCarRegistration.Location = new Point(103, 453);
+            btnCarRegistration.Name = "btnCarRegistration";
+            btnCarRegistration.Size = new Size(125, 29);
+            btnCarRegistration.TabIndex = 13;
+            btnCarRegistration.Text = "CarRegistration";
+            btnCarRegistration.UseVisualStyleBackColor = true;
+            btnCarRegistration.Click += btnCarRegistration_Click;
+            // 
+            // btnParkingBooking
+            // 
+            btnParkingBooking.Location = new Point(352, 453);
+            btnParkingBooking.Name = "btnParkingBooking";
+            btnParkingBooking.Size = new Size(145, 29);
+            btnParkingBooking.TabIndex = 14;
+            btnParkingBooking.Text = "Parking Booking";
+            btnParkingBooking.UseVisualStyleBackColor = true;
+            btnParkingBooking.Click += btnParkingBooking_Click;
+            // 
             // frmCustomerScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(661, 450);
+            ClientSize = new Size(661, 509);
+            Controls.Add(btnParkingBooking);
+            Controls.Add(btnCarRegistration);
             Controls.Add(txtSearchBox);
             Controls.Add(cboSearchFilter);
             Controls.Add(label6);
@@ -198,5 +222,7 @@
         private Label label6;
         private ComboBox cboSearchFilter;
         private TextBox txtSearchBox;
+        private Button btnCarRegistration;
+        private Button btnParkingBooking;
     }
 }

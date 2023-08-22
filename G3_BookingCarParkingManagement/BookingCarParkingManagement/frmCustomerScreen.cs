@@ -140,5 +140,21 @@ namespace BookingCarParkingManagement
             };
             frmUpdate.ShowDialog();
         }
+
+        private void btnCarRegistration_Click(object sender, EventArgs e)
+        {
+            frmCarRegistration car = new frmCarRegistration();
+            Hide();
+            car.ShowDialog();
+            Close();
+        }
+
+        private void btnParkingBooking_Click(object sender, EventArgs e)
+        {
+            frmParkingBooking booking = new frmParkingBooking();
+            Hide();
+            booking.ShowDialog();
+            Close();
+        }
     }
 }
