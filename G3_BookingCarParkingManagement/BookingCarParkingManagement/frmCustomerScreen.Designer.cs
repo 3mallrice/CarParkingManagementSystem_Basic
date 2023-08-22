@@ -42,6 +42,8 @@
             cboSearchFilter = new ComboBox();
             txtSearchBox = new TextBox();
             btnLogout = new Button();
+            btnCarRegistration = new Button();
+            btnParkingBooking = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvListBaixe).BeginInit();
             SuspendLayout();
             // 
@@ -168,11 +170,33 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
+            // btnCarRegistration
+            // 
+            btnCarRegistration.Location = new Point(46, 427);
+            btnCarRegistration.Name = "btnCarRegistration";
+            btnCarRegistration.Size = new Size(140, 29);
+            btnCarRegistration.TabIndex = 14;
+            btnCarRegistration.Text = "CarRegistration";
+            btnCarRegistration.UseVisualStyleBackColor = true;
+            btnCarRegistration.Click += btnCarRegistration_Click;
+            // 
+            // btnParkingBooking
+            // 
+            btnParkingBooking.Location = new Point(277, 427);
+            btnParkingBooking.Name = "btnParkingBooking";
+            btnParkingBooking.Size = new Size(140, 29);
+            btnParkingBooking.TabIndex = 15;
+            btnParkingBooking.Text = "ParkingBooking";
+            btnParkingBooking.UseVisualStyleBackColor = true;
+            btnParkingBooking.Click += btnParkingBooking_Click;
+            // 
             // frmCustomerScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(661, 470);
+            Controls.Add(btnParkingBooking);
+            Controls.Add(btnCarRegistration);
             Controls.Add(btnLogout);
             Controls.Add(txtSearchBox);
             Controls.Add(cboSearchFilter);
@@ -212,5 +236,7 @@
         private ComboBox cboSearchFilter;
         private TextBox txtSearchBox;
         private Button btnLogout;
+        private Button btnCarRegistration;
+        private Button btnParkingBooking;
     }
 }
