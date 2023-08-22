@@ -25,8 +25,9 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
 
         private void frmParkingSlot_Load(object sender, EventArgs e)
         {
-            ChangeSlotStatus();
-            pnParkingSlot.Visible = true;
+            List<Book> bookingList = bookRepository.GetAll().Where(x => x.Status == 1 && DateTime.Now.CompareTo(x.StartTime) >= 0 && DateTime.Now.CompareTo(x.EndTime) <= 0).ToList();
+            List<Slotxe> slotxeList = slotxeRepository.GetAll().ToList();
+            ChangeSlotStatus(bookingList,slotxeList);
             var parkingList = baixeRepository.GetBaiXe();
             List<string> parkingNameList = new List<string>();
             foreach (Baixe baixe in parkingList)
@@ -38,27 +39,22 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
 
         private void cbxParking_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ChangeSlotStatus();
+            List<Book> bookingList = bookRepository.GetAll().Where(x => x.Status == 1 && DateTime.Now.CompareTo(x.StartTime) >= 0 && DateTime.Now.CompareTo(x.EndTime) <= 0).ToList();
+            List<Slotxe> slotxeList = slotxeRepository.GetAll().ToList();
+            ChangeSlotStatus(bookingList, slotxeList);
             this.pnParkingSlot.Controls.Clear();
             var parkingList = baixeRepository.GetBaiXe();
-            var slots = slotxeRepository.GetAll();
-            Baixe parking = new Baixe();
             //Get parking object from cbx
-            foreach (Baixe baixe in parkingList)
-            {
-                if (baixe.BaixeName.Equals(cbxParking.Text))
-                {
-                    parking = baixe;
-                }
-            }
+            Baixe parking = parkingList.SingleOrDefault(x => x.BaixeName.Equals(cbxParking.SelectedItem));
+            
             //Generate slots graphic in this parking to panel
-            List<Slotxe> list = slots.Where(x => x.BaixeId == parking.BaixeId).ToList();
-            for (int i = 1; i <= parking.TotalSlot; i++)
+            List<Slotxe> list = slotxeList.Where(x => x.BaixeId == parking.BaixeId).ToList();
+            for (int i = 0; i < parking.TotalSlot; i++)
             {
-                Slotxe slot = (Slotxe)list.ElementAt(i - 1);
+                Slotxe slot = (Slotxe)list.ElementAt(i);
                 Button bt = new Button();
                 bt.Location = new Point(i * 65 + 3, 3);
-                bt.Text = "Slot " + i.ToString();
+                bt.Text = ("Slot " + (i+1)).ToString();
                 bt.Name = slot.SlotxeId.ToString();
                 bt.Size = new Size(59, 110);
                 bt.TabIndex = i;
@@ -91,18 +87,16 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
             }
         }
 
-        private void ChangeSlotStatus()
+        private void ChangeSlotStatus(List<Book> bookingList, List<Slotxe> slotxeList)
         {
-            var bookingList = bookRepository.GetAll().Where(x => x.Status == 1 && DateTime.Now.CompareTo(x.StartTime) >= 0 && DateTime.Now.CompareTo(x.EndTime) <= 0);
-            var slotxeList = slotxeRepository.GetAll();
-            foreach (var booking in bookingList)
+            
+            foreach (var s in slotxeList)
             {
-                foreach (var slot in slotxeList)
+                foreach (var b in bookingList)
                 {
-                    if (slot.SlotxeId == booking.SlotxeId) slot.Status = 1;
-                    else slot.Status = 0;
-                    slotxeRepository.Update(slot);
-                }
+                    if (s.SlotxeId == b.SlotxeId && s.Status == 0) s.Status = 1;
+                    slotxeRepository.Update(s);
+                }                
             }
         }
     }

@@ -46,7 +46,7 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
                 list.Add(car.Bsx);
             }
             cbxCar.DataSource = list;
-            txtStatus.Text = slotxe.Status == 0 ? "Slot Empty" : "Slot har car";
+            txtStatus.Text = slotxe.Status == 0 ? "Slot Empty" : "Slot has car";
             switch (context)
             {
                 case "Checkin":
@@ -98,20 +98,31 @@ namespace BookingCarParkingManagement.ChildOfStaffScreen
                         booking.EndTime = dtpEnd.Value;
                         booking.Status = 1;
                         bookRepo.Create(booking);
-                        MessageBox.Show("Check In successfully!","Information",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
+                        MessageBox.Show("Check In successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Hide();
                         frmParkingSlot frmParkingSlot = new frmParkingSlot();
                         frmParkingSlot.Refresh();
                     }
                     break;
                 case "Checkout":
                     {
+                        booking.EndTime = DateTime.Now;
+                        Close();
                         frmBill frmBill = new frmBill(booking);
-                        this.Hide();
                         frmBill.ShowDialog();
+                        this.booking.Status = 3;
+                        this.slotxe.Status = 0;
+                        bookRepo.Update(booking);
+                        slotxeRepo.Update(slotxe);
                     }
                     break;
             }
+        }
+
+        private void frmSlotDetail_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmParkingSlot frmParkingSlot = new frmParkingSlot();
+            frmParkingSlot.Refresh();
         }
     }
 }
