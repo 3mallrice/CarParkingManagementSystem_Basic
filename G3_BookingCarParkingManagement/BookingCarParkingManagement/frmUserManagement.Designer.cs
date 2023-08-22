@@ -50,6 +50,9 @@
             dgvUserManagement = new DataGridView();
             btnCreate = new Button();
             btnUpdate = new Button();
+            btnParkingBookingManagement = new Button();
+            btnStaffScreen = new Button();
+            btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvUserManagement).BeginInit();
             SuspendLayout();
             // 
@@ -202,6 +205,7 @@
             // 
             txtUserID.Location = new Point(95, 286);
             txtUserID.Name = "txtUserID";
+            txtUserID.ReadOnly = true;
             txtUserID.Size = new Size(218, 27);
             txtUserID.TabIndex = 23;
             // 
@@ -222,7 +226,7 @@
             dgvUserManagement.RowHeadersWidth = 51;
             dgvUserManagement.RowTemplate.Height = 29;
             dgvUserManagement.Size = new Size(647, 251);
-            dgvUserManagement.TabIndex = 21;
+            dgvUserManagement.TabIndex = 0;
             dgvUserManagement.CellDoubleClick += dgvUserManagement_CellDoubleClick;
             // 
             // btnCreate
@@ -245,11 +249,44 @@
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
             // 
+            // btnParkingBookingManagement
+            // 
+            btnParkingBookingManagement.Location = new Point(437, 456);
+            btnParkingBookingManagement.Name = "btnParkingBookingManagement";
+            btnParkingBookingManagement.Size = new Size(222, 29);
+            btnParkingBookingManagement.TabIndex = 44;
+            btnParkingBookingManagement.Text = "Parking Booking Management";
+            btnParkingBookingManagement.UseVisualStyleBackColor = true;
+            btnParkingBookingManagement.Click += btnParkingBookingManagement_Click;
+            // 
+            // btnStaffScreen
+            // 
+            btnStaffScreen.Location = new Point(294, 501);
+            btnStaffScreen.Name = "btnStaffScreen";
+            btnStaffScreen.Size = new Size(218, 29);
+            btnStaffScreen.TabIndex = 45;
+            btnStaffScreen.Text = "Staff Screen";
+            btnStaffScreen.UseVisualStyleBackColor = true;
+            btnStaffScreen.Click += btnStaffScreen_Click;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(565, 501);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(94, 29);
+            btnLogout.TabIndex = 46;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // frmUserManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(671, 542);
+            ClientSize = new Size(671, 546);
+            Controls.Add(btnLogout);
+            Controls.Add(btnStaffScreen);
+            Controls.Add(btnParkingBookingManagement);
             Controls.Add(btnUpdate);
             Controls.Add(btnCreate);
             Controls.Add(btnLoad);
@@ -274,7 +311,7 @@
             Controls.Add(dgvUserManagement);
             Name = "frmUserManagement";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmUserManagement";
+            Text = "User Management";
             Load += frmUserManagement_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUserManagement).EndInit();
             ResumeLayout(false);
@@ -305,5 +342,8 @@
         private DataGridView dgvUserManagement;
         private Button btnCreate;
         private Button btnUpdate;
+        private Button btnParkingBookingManagement;
+        private Button btnStaffScreen;
+        private Button btnLogout;
     }
 }

@@ -55,26 +55,32 @@ namespace BookingCarParkingManagement
                 MessageBox.Show(ex.Message, "Load user list");
             }
         }
+        private void dgvUserManagemen_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
         private void dgvUserManagement_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var UserId = dgvUserManagement.Rows[e.RowIndex].Cells[0].Value;
-            if (UserId != null)
+            if (e.RowIndex >= 0 && e.RowIndex < dgvUserManagement.Rows.Count)
             {
-                var user = _user.GetAll()
-                        .Where(p => p.UserId.Equals(txtUserID.Text)).FirstOrDefault();
-
-                if (user != null)
+                var UserId = dgvUserManagement.Rows[e.RowIndex].Cells[0].Value;
+                if (UserId != null)
                 {
-                    txtUserID.Text = user.UserId.ToString();
-                    txtName.Text = user.Name;
-                    txtEmail.Text = user.Email.ToLower();
-                    txtPassword.Text = user.Password;
-                    txtPhone.Text = user.Phone;
-                    txtRole.Text = user.Role.ToString();
-                    txtStatus.Text = user.Status.ToString();
+                    var userIdValue = UserId.ToString(); // Convert UserId to string
+                    var user = _user.GetAll().Where(p => p.UserId.Equals(userIdValue)).FirstOrDefault();
+                    if (user != null)
+                    {
+                        txtUserID.Text = user.UserId.ToString();
+                        txtName.Text = user.Name;
+                        txtEmail.Text = user.Email.ToLower();
+                        txtPassword.Text = user.Password;
+                        txtPhone.Text = user.Phone;
+                        txtRole.Text = user.Role.ToString();
+                        txtStatus.Text = user.Status.ToString();
+                    }
                 }
             }
         }
+
 
         public void Clear()
         {
@@ -279,6 +285,31 @@ namespace BookingCarParkingManagement
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Load user list");
+            }
+        }
+
+        private void btnParkingBookingManagement_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmParkingBooking parkingBooking = new frmParkingBooking();
+            parkingBooking.ShowDialog();
+        }
+
+        private void btnStaffScreen_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmStaffScreen staffScreen = new frmStaffScreen();
+            staffScreen.ShowDialog();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            var cfm = MessageBox.Show("Are you sure to Sign Out?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (cfm == DialogResult.OK)
+            {
+                this.Hide();
+                frmLogin frmLogin = new frmLogin();
+                frmLogin.ShowDialog();
             }
         }
     }
